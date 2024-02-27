@@ -8,7 +8,9 @@
 				// Fstar extension for F*
 				"fstarlang.fstar-vscode-assistant",
 				// Koka
-				"koka.language-koka"
+				"koka.language-koka",
+				// Rust
+				"rust-lang.rust-analyzer"
 			],
 			"settings": {
 				"files.exclude": {
