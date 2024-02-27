@@ -10,7 +10,12 @@
 				// Koka
 				"koka.language-koka",
 				// Rust
-				"rust-lang.rust-analyzer"
+				"rust-lang.rust-analyzer",
+				// Haskell,
+				"haskell.haskell",
+				// Haskell syntax highlighting
+				"justusadam.language-haskell"
+
 			],
 			"settings": {
 				"files.exclude": {
