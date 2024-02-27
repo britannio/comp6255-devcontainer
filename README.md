@@ -2,7 +2,7 @@
 
 Docker container for the [COMP6255 module](https://www.southampton.ac.uk/courses/modules/comp6255).
 The container can be used for any development via Visual Studio Code.
-The container configuration will automatically install the neccsary extensions and configure some editor settings.
+The container configuration will automatically install the necessary extensions and configure editor settings.
 
 ## Setup
 1) [Install Docker](https://www.docker.com/get-started/). I highly recommend [Orbstack](http://orbstack.dev/) for MacOS users as it currently uses fewer resources.
