@@ -14,9 +14,29 @@ RUN sudo apt-get update && \
 ENV PATH="/home/coq/fstar/bin:${PATH}"
 
 # Install Haskell
-RUN curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_GHC_VERSION=latest BOOTSTRAP_HASKELL_CABAL_VERSION=latest BOOTSTRAP_HASKELL_INSTALL_STACK=1 BOOTSTRAP_HASKELL_INSTALL_HLS=1 BOOTSTRAP_HASKELL_ADJUST_BASHRC=P BOOTSTRAP_HASKELL_VERBOSE=1 sh
-RUN cat ~/.ghcup/env >> ~/.bashrc
+RUN curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org \
+    | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 \
+        BOOTSTRAP_HASKELL_GHC_VERSION=latest \
+        BOOTSTRAP_HASKELL_CABAL_VERSION=latest \
+        BOOTSTRAP_HASKELL_INSTALL_STACK=1 \
+        BOOTSTRAP_HASKELL_INSTALL_HLS=1 \
+        BOOTSTRAP_HASKELL_ADJUST_BASHRC=P \
+        BOOTSTRAP_HASKELL_VERBOSE=1 \
+        sh && \
+    echo "source ~/.ghcup/env" >> ~/.bashrc
 
 # Install Rust
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
+
+# Install Koka
+RUN curl -sSL https://github.com/koka-lang/koka/releases/latest/download/install.sh | sh
+
+# Install Node.js and Typescript
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+ENV NVM_DIR="/home/coq/.nvm"
+RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
+    nvm install node && \
+    nvm use node && \
+    npm install -g typescript
+

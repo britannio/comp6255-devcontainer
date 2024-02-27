@@ -18,8 +18,13 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				// Coq Legacy extension for Coq 8.17.x
 				"coq-community.vscoq1",
-				"fstarlang.fstar-vscode-assistant"
+				// Fstar extension for F*
+				"fstarlang.fstar-vscode-assistant",
+				// Koka
+				"koka.language-koka"
+
 			],
 			"settings": {
 				"files.exclude": {
