@@ -3,15 +3,15 @@ FROM ${COQ_IMAGE}
 
 RUN opam clean -y -a -c -s --logs
 RUN eval $(opam env)
+RUN sudo apt-get update
 
 # Install Fstar
-RUN sudo apt-get update && \
-    sudo apt-get install --no-install-recommends -y jq && \
-    fstar_latest=$(curl -s https://api.github.com/repos/FStarLang/FStar/releases/latest) && \
-    fstar_download_url=$(echo "$fstar_latest" | jq -r '.assets[] | select(.name | test("Linux_x86_64.tar.gz")) | .browser_download_url') && \
-    curl -L $fstar_download_url -o fstar_latest_linux_x86_64.tar.gz && \
-    tar -xzvf fstar_latest_linux_x86_64.tar.gz
-ENV PATH="/home/coq/fstar/bin:${PATH}"
+ENV FSTAR_DOWNLOAD_URL="https://github.com/FStarLang/FStar/releases/download/v2023.09.03/fstar_2023.09.03_Linux_x86_64.tar.gz"
+RUN curl -L $FSTAR_DOWNLOAD_URL -o fstar_linux_x86_64.tar.gz && \
+    tar -xzvf fstar_linux_x86_64.tar.gz && \
+    rm fstar_linux_x86_64.tar.gz && \
+    mv fstar "$HOME/.fstar"
+ENV PATH="$HOME/.fstar/bin:${PATH}"
 
 # Install Haskell
 RUN curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org \
@@ -23,7 +23,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org \
         BOOTSTRAP_HASKELL_ADJUST_BASHRC=P \
         BOOTSTRAP_HASKELL_VERBOSE=1 \
         sh && \
-    echo "source ~/.ghcup/env" >> ~/.bashrc
+    echo ". $HOME/.ghcup/env" >> "$HOME/.bashrc" 
 
 # Install Rust
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
