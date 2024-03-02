@@ -5,6 +5,8 @@ RUN opam clean -y -a -c -s --logs
 RUN eval $(opam env)
 RUN sudo apt-get update
 
+ENV HOME /home/coq
+
 # Install Fstar
 ENV FSTAR_DOWNLOAD_URL="https://github.com/FStarLang/FStar/releases/download/v2023.09.03/fstar_2023.09.03_Linux_x86_64.tar.gz"
 RUN curl -L $FSTAR_DOWNLOAD_URL -o fstar_linux_x86_64.tar.gz && \
@@ -34,7 +36,7 @@ RUN curl -sSL https://github.com/koka-lang/koka/releases/latest/download/install
 
 # Install Node.js and Typescript
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-ENV NVM_DIR="/home/coq/.nvm"
+ENV NVM_DIR="$HOME/.nvm"
 RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
     nvm install node && \
     nvm use node && \
