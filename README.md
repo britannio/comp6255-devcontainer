@@ -8,10 +8,10 @@ The container configuration will automatically install the necessary extensions 
 1) [Install Docker](https://www.docker.com/get-started/). I highly recommend [Orbstack](http://orbstack.dev/) for MacOS users as it currently uses fewer resources.
 2) Make sure Docker/Orbstack is running
 3) [Install Visual Studio Code](https://code.visualstudio.com/Download)
-4) [Install Remote - Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+4) [Install Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 5) Copy the `.devcontainer` folder to the root of your project folder
 
-After following the above instructions open your project in Visual Studio Code and run the `Remote-Containers: Reopen in Container` command.
+After following the above instructions open your project in Visual Studio Code and run the `Dev Containers: Reopen in Container` command.
 If the instructions are followed correctly Visual Studio Code should also automatically suggest opening the repository in container mode when the project is loaded.
 
 ## System requirements
@@ -21,11 +21,11 @@ See [here](https://code.visualstudio.com/docs/remote/containers#_system-requirem
 ### VSCode shows `Docker returned an error`
 Make sure that Docker is installed and running.
 
-### The `Remote-Containers: Reopen in Container` command is not recoqnized by VSCode
+### The `Dev Containers: Reopen in Container` command is not recoqnized by VSCode
 You need to have the Remote - Containers extension VSCode extension installed and enabled.
 See [here](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for instructions on how to install it.
 
-### Running `Remote-Containers: Reopen in Container` cannot find container
+### Running `Dev Containers: Reopen in Container` cannot find container
 Make sure you copied the `.devcontainer` folder to your projects root folder and that it includes the `devcontainer.json` file.
 
 ### `Cannot find a physical path bound to logical path X with prefix Y` when importing file
